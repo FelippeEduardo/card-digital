@@ -1,0 +1,255 @@
+/* =========================
+   Reset e Configurações Gerais
+   ========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --font-base: Arial, sans-serif;
+  --color-bg: #0A1A2F;
+  --color-light: #fcfdfd;
+  --color-dark: #000000;
+  --color-primary: #069bf0;
+  --color-muted: #555555;
+}
+
+body {
+  font-family: var(--font-base);
+  background: url("../img/fnd.png") no-repeat center center fixed;
+  background-size: cover;
+  background-color: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================
+   Header
+   ========================= */
+header {
+  text-align: center;
+  margin-top: 20px;
+}
+
+header h1 {
+  color: var(--color-light);
+  font-size: 2rem;
+  margin-bottom: 2px;
+}
+
+header h2 {
+  font-size: 1rem;
+  color: var(--color-light);
+}
+
+/* =========================
+   Main
+   ========================= */
+main {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  z-index: 2;
+}
+
+main section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* =========================
+   Perfil
+   ========================= */
+.perfil {
+  text-align: center;
+  color: var(--color-dark);
+}
+
+.perfil img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid var(--color-primary);
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.perfil p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* =========================
+   Títulos
+   ========================= */
+.titulo-secao {
+  font-size: 1.2rem;
+  color: var(--color-primary);
+  border-bottom: 2px solid #f0f2f5;
+  padding-bottom: 5px;
+}
+
+/* =========================
+   Listas
+   ========================= */
+.lista {
+  list-style-type: disc;
+  padding-left: 18px;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+/* =========================
+   Contatos
+   ========================= */
+.contatos {
+  text-align: center;
+}
+
+.contatos ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.contatos a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 80px;
+  border-radius: 16px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: transparent;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.contatos a:hover {
+  transform: scale(1.08);
+}
+
+/* Botões específicos */
+.contatos a.whatsapp {
+  background: url("../img/wtpps.png") no-repeat center center / contain;
+}
+
+.contatos a.gmail {
+  background: url("../img/Gmail.png") no-repeat center center / contain;
+}
+
+.contatos a.github {
+  background: url("../img/github.png") no-repeat center center / contain;
+}
+
+/* =========================
+   Footer
+   ========================= */
+footer {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--color-light);
+  margin-top: 10px;
+}
+
+/* =========================
+   Responsividade
+   ========================= */
+@media (max-width: 600px) {
+  body {
+    gap: 10px;
+  }
+
+  main {
+    flex-direction: column;
+    max-width: 260px;
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .perfil img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .contatos ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .contatos a {
+    width: 160px;
+    height: 64px;
+    font-size: 1.1rem;
+  }
+
+  footer {
+    font-size: 0.8rem;
+  }
+}
+
+/* =========================
+   Ícones decorativos
+   ========================= */
+.icones-fundo {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.icones-fundo .icone {
+  position: absolute;
+  width: 30px;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 3px var(--color-primary));
+  animation: flutuar 6s ease-in-out infinite alternate;
+}
+
+.icones-fundo .html {
+  top: 12px;
+  left: 12px;
+}
+
+.icones-fundo .css {
+  top: 12px;
+  right: 12px;
+}
+
+.icones-fundo .js {
+  bottom: 12px;
+  left: 12px;
+}
+
+.icones-fundo .git {
+  bottom: 12px;
+  right: 40px;
+}
+
+/* Animação */
+@keyframes flutuar {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-6px);
+  }
+}
