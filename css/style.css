@@ -151,9 +151,7 @@ main section {
   background: url("../img/wtpps.png") no-repeat center center / contain;
 }
 
-.contatos a.gmail {
-  background: url("../img/Gmail.png") no-repeat center center / contain;
-}
+
 
 .contatos a.github {
   background: url("../img/github.png") no-repeat center center / contain;
@@ -240,7 +238,7 @@ footer {
 
 .icones-fundo .git {
   bottom: 12px;
-  right: 40px;
+  right: 25px;
 }
 
 /* Animação */
@@ -252,4 +250,13 @@ footer {
   to {
     transform: translateY(-6px);
   }
+}
+
+.icones-fundo .python {
+  top: 50%;
+  /* centraliza verticalmente */
+  left: 12px;
+  /* fixa na borda esquerda */
+  transform: translateY(-50%);
+  /* ajusta para o centro exato */
 }
