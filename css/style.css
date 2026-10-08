@@ -1,234 +1,237 @@
 /* =========================
-   Reset e Configurações Gerais
+   Base
    ========================= */
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 :root {
-  --font-base: Arial, sans-serif;
-  --color-bg: #0A1A2F;
-  --color-light: #fcfdfd;
-  --color-dark: #000000;
-  --color-primary: #069bf0;
-  --color-muted: #555555;
+  --font: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+
+  --bg: #0a1a2f;
+  --surface: #ffffff;
+  --text: #101820;
+  --muted: #4a5563;
+  --line: #e3e8ef;
+  --primary: #069bf0;
+  --primary-dark: #0478b8;
+  --on-dark: #fcfdfd;
+
+  --radius: 20px;
+  --pad: 24px;
+}
+
+/* O fundo fica no html; o body vira o cartão */
+html {
+  background: var(--bg) url("../img/fnd.png") no-repeat center / cover fixed;
+  min-height: 100%;
 }
 
 body {
-  font-family: var(--font-base);
-  background: url("../img/fnd.png") no-repeat center center fixed;
-  background-size: cover;
-  background-color: var(--color-bg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  gap: 20px;
-  position: relative;
-  z-index: 1;
+  font-family: var(--font);
+  line-height: 1.5;
+  color: var(--text);
+  width: min(100% - 32px, 420px);
+  margin: 32px auto;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
 }
 
 /* =========================
-   Header
+   Capa (nome e cargo)
    ========================= */
 header {
   text-align: center;
-  margin-top: 20px;
+  padding: 40px var(--pad) 80px;
+  background: linear-gradient(160deg, #0f2a4a, var(--bg));
 }
 
 header h1 {
-  color: var(--color-light);
-  font-size: 2rem;
-  margin-bottom: 2px;
+  color: var(--on-dark);
+  font-size: 1.75rem;
+  line-height: 1.2;
 }
 
 header h2 {
+  margin-top: 4px;
+  color: var(--primary);
   font-size: 1rem;
-  color: var(--color-light);
+  font-weight: 400;
 }
 
 /* =========================
-   Main
+   Conteúdo
    ========================= */
 main {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-  max-width: 900px;
-  width: 100%;
   display: flex;
-  gap: 20px;
-  z-index: 2;
+  flex-direction: column;
+  gap: var(--pad);
+  padding: 0 var(--pad) var(--pad);
 }
 
 main section {
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-/* =========================
-   Perfil
-   ========================= */
+/* Perfil: foto redonda sobre a capa + texto centralizado */
 .perfil {
-  display: flex;
-  align-items: stretch;
-  min-height: 320px;
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
+  align-items: center;
+  gap: 16px;
+  margin-top: -64px;
+  text-align: center;
 }
 
 .foto-perfil {
-  width: 280px;
-  min-width: 280px;
-  height: 100%;
+  width: 128px;
+  height: 128px;
   object-fit: cover;
-  border-right: 5px solid var(--color-primary);
-  display: block;
+  border-radius: 50%;
+  border: 4px solid var(--surface);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
 }
 
-.perfil p {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  padding: 25px;
-  font-size: 1rem;
-  line-height: 1.8;
-  text-align: left;
-  color: var(--color-dark);
+/* Funciona com <p> e com a tag <text> atual */
+.perfil> :not(img) {
+  font-size: 0.95rem;
+  line-height: 1.7;
 }
 
 /* =========================
-   Títulos
+   Títulos e listas
    ========================= */
 .titulo-secao {
-  font-size: 1.2rem;
-  color: var(--color-primary);
-  border-bottom: 2px solid #f0f2f5;
-  padding-bottom: 5px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--line);
+  color: var(--primary-dark);
+  font-size: 1rem;
 }
 
-/* =========================
-   Listas
-   ========================= */
 .lista {
-  list-style-type: disc;
-  padding-left: 18px;
-  font-size: 0.9rem;
-  color: var(--color-muted);
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.85rem;
+}
+
+.lista br {
+  display: none;
+}
+
+/* Habilidades: etiquetas */
+ol.lista li {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #eef7fe;
+  color: var(--primary-dark);
+}
+
+/* Projetos: links em linha cheia */
+ul.lista {
+  flex-direction: column;
+}
+
+ul.lista a {
+  display: block;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--primary);
+  border-radius: 10px;
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+ul.lista a:hover {
+  background: #f5faff;
 }
 
 /* =========================
    Contatos
    ========================= */
 .contatos {
-  text-align: center;
+  padding: 0 var(--pad) var(--pad);
 }
 
 .contatos ul {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .contatos a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 200px;
-  height: 80px;
-  border-radius: 16px;
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: transparent;
-  text-decoration: none;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
+  display: block;
+  width: 150px;
+  height: 60px;
+  border-radius: 14px;
+  font-size: 0;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
 }
 
 .contatos a:hover {
-  transform: scale(1.08);
+  transform: translateY(-3px);
 }
 
-/* Botões específicos */
 .contatos a.whatsapp {
-  background: url("../img/wtpps.png") no-repeat center center / contain;
+  background: url("../img/wtpps.png") no-repeat center / contain;
 }
-
-
 
 .contatos a.github {
-  background: url("../img/github.png") no-repeat center center / contain;
+  background: url("../img/github.png") no-repeat center / contain;
 }
 
 /* =========================
-   Footer
+   Rodapé
    ========================= */
 footer {
+  padding: 14px var(--pad);
+  background: var(--bg);
+  color: var(--on-dark);
+  font-size: 0.8rem;
   text-align: center;
-  font-size: 0.85rem;
-  color: var(--color-light);
-  margin-top: 10px;
 }
 
 /* =========================
-   Responsividade
-   ========================= */
-@media (max-width: 600px) {
-  body {
-    gap: 10px;
-  }
-
-  main {
-    flex-direction: column;
-    max-width: 260px;
-    padding: 15px;
-    gap: 15px;
-  }
-
-  .perfil img {
-    width: 100px;
-    height: 100px;
-  }
-
-  .contatos ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .contatos a {
-    width: 160px;
-    height: 64px;
-    font-size: 1.1rem;
-  }
-
-  footer {
-    font-size: 0.8rem;
-  }
-}
-
-/* =========================
-   Ícones decorativos
+   Ícones decorativos (fora do cartão)
    ========================= */
 .icones-fundo {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 0;
 }
 
 .icones-fundo .icone {
   position: absolute;
   width: 30px;
   opacity: 0.8;
-  filter: drop-shadow(0 0 3px var(--color-primary));
+  filter: drop-shadow(0 0 3px var(--primary));
   animation: flutuar 6s ease-in-out infinite alternate;
+}
+
+.icones-fundo .icone img {
+  width: 100%;
 }
 
 .icones-fundo .html {
@@ -251,22 +254,43 @@ footer {
   right: 25px;
 }
 
-/* Animação */
-@keyframes flutuar {
-  from {
-    transform: translateY(0);
-  }
+.icones-fundo .python {
+  top: 50%;
+  left: 12px;
+  translate: 0 -50%;
+}
 
+@keyframes flutuar {
   to {
     transform: translateY(-6px);
   }
 }
 
-.icones-fundo .python {
-  top: 50%;
-  /* centraliza verticalmente */
-  left: 12px;
-  /* fixa na borda esquerda */
-  transform: translateY(-50%);
-  /* ajusta para o centro exato */
+/* =========================
+   Responsivo e acessibilidade
+   ========================= */
+@media (max-width: 520px) {
+  html {
+    background-attachment: scroll;
+  }
+
+  body {
+    margin: 16px auto;
+  }
+
+  .icones-fundo {
+    display: none;
+    /* evita sobrepor o cartão em telas estreitas */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icones-fundo .icone {
+    animation: none;
+  }
+
+  .contatos a,
+  ul.lista a {
+    transition: none;
+  }
 }
